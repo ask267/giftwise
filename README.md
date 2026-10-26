@@ -38,6 +38,20 @@ Set `GIFT_MODEL` to use a different model.
 
 **First look:** on the empty Upcoming page click **Load demo people**. That adds 5 people (a birthday in 2 days, wishlists, dislikes, gift history, locations) with no AI call. On Import notes, **Try a sample note** is a clean messy note; **⛨ Try an attack** is a note with planted instructions aimed at the AI, to see the defense work.
 
+## Data
+
+**No large dataset.** Everything the app needs is small and already in this repo, so there is nothing to download and nothing to switch.
+
+| What | Where | Notes |
+|---|---|---|
+| Gift catalog (~100 demo products with prices, vibes, tags and delivery speeds) | `backend/catalog_data.py` | Plain Python, a few KB. Prices are approximate |
+| Store links for every catalog store | `backend/store_links.py` | Each store's own search or shop page |
+| Test inputs | `samples/` | `messy_note.txt` (includes a planted prompt-injection line), `note_screenshot.jpg`, `birthdays.ics`, `contacts.vcf` |
+| Demo people | `backend/demo.py` | Created by the **Load demo people** button; dates are relative to today |
+| Your own data | `data/` (created on first use) | `people.json`, caches, `usage_log.jsonl`, `metrics.jsonl`. Starts empty on a fresh clone and is git-ignored |
+
+Live lookups happen over the internet only when a feature is used: OpenStreetMap for nearby shops (no key, results cached in `data/geo_cache.json`), and the product page when you paste a link. To start fresh, stop the backend and delete the `data/` files.
+
 ## How the Notes Parser works
 
 | Course concept | Where |
