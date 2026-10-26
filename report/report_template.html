@@ -44,9 +44,9 @@
   ul { padding-left: 20px; } li { margin: 4px 0; }
   @page { size: letter; margin: 0.6in; }
   @media print {
-    body { background: #fff; font-size: 10.2pt; line-height: 1.45; }
+    body { background: #fff; font-size: 11pt; line-height: 1.45; }
     h2 { margin-top: 26px; }
-    table { font-size: 9pt; }
+    table { font-size: 9.5pt; }
     th, td { padding: 4px 6px; }
     figure.solo img { max-width: 82%; margin: 0 auto; }
     figcaption { font-size: 8.5pt; }
@@ -77,17 +77,17 @@
 <h2><span class="num">2 ·</span> Motivation</h2>
 <p>This project started with two real situations.</p>
 <div class="two">
-  <div class="card purple"><h4>Far from family</h4><p>My roommate and I kept having the same conversation: what to get our family members for their birthdays now that we live so far away from them. The problem was never a lack of love. It was remembering in time, remembering what they had mentioned months ago, and finding something that could actually <i>arrive</i> by the date from hundreds of miles away.</p></div>
-  <div class="card green"><h4>The Silver cohort birthday cakes</h4><p>In my SOM cohort (Silver), we get a birthday cake for everyone on their birthday. Someone, usually the cohort rep, has to keep a spreadsheet of birthdays, notice whose is coming up, and organize a cake in time, every week, for the whole year. It is a kind tradition that depends on one person's memory.</p></div>
+  <div class="card purple"><h4>Far from family</h4><p>My roommate and I kept having the same conversation: what to get our family members for their birthdays now that we live so far away from them. The hard parts were remembering in time, remembering what they had mentioned months ago, and finding something that could actually <i>arrive</i> by the date from hundreds of miles away.</p></div>
+  <div class="card green"><h4>The Silver cohort birthday cakes</h4><p>In my SOM cohort (Silver), we get a birthday cake for everyone on their birthday. Someone, usually the cohort rep, has to keep a spreadsheet of birthdays, notice whose is coming up, and organize a cake in time, all year. The whole tradition depends on one person's spreadsheet.</p></div>
 </div>
 <h3>How people handle this today</h3>
 <ul>
   <li><b>Gift ideas live in scattered places:</b> the iPhone Notes app, screenshots, texts, a spreadsheet. When a birthday arrives, nobody can find "the thing she said she wanted in March."</li>
-  <li><b>Reminders come too late.</b> A calendar alert on the day itself is useless if the gift needs a week to ship. People end up paying for rush shipping, sending a generic gift card, or missing the date.</li>
+  <li><b>Reminders come too late.</b> A calendar alert on the day itself is useless if the gift needs a week to ship.</li>
   <li><b>"Ask ChatGPT for gift ideas" gives generic lists.</b> You retype the person every time, it doesn't know what you already gave them, it doesn't know your timeline, and it gives you no place to actually order.</li>
-  <li><b>Organizers carry it alone.</b> A cohort rep, a team lead or an RA tracking 50 or more birthdays keeps it all in their head and a spreadsheet.</li>
+  <li><b>Organizers carry it alone.</b> A cohort rep, team lead or RA tracking dozens of birthdays has only a spreadsheet.</li>
 </ul>
-<p><b>Why it matters:</b> the cost isn't a few dollars. It's the forgotten birthday of a parent you can't visit, the rushed gift that says "I forgot," and the volunteer organizer who burns out. Giftwise takes over the remembering and the searching, so the giver keeps the thoughtful part.</p>
+<p><b>What remembering late costs, measured in the app's own catalog:</b> with a $60 budget, remembering 14 days ahead leaves all 75 gifts possible. At 5 days, 61 remain. At 1 day, only <b>31 of 75</b> can still arrive, and every personalized, custom or handmade option is gone. Remembering early is what keeps the thoughtful options open, and that's the part Giftwise automates.</p>
 
 <!-- 3. WHAT IS NEW -->
 <h2><span class="num">3 ·</span> What is new here</h2>
@@ -103,12 +103,12 @@
 <p><b>What Giftwise does that these don't, together in one place:</b></p>
 <ol>
   <li><b>Starts from the notes people already keep.</b> Paste the messy Notes-app list, or upload a screenshot or a calendar or contacts export. An agent sorts it into people, ideas, things to avoid, past gifts and dates.</li>
-  <li><b>Remembers, so the AI's answers improve over time.</b> Dislikes ("NOT another hoodie"), sizes and gift history are saved, and the house rules block repeats and dislikes in code.</li>
+  <li><b>Remembers across occasions.</b> Dislikes ("NOT another hoodie"), sizes and gift history are saved, and the house rules block repeats and dislikes in code.</li>
   <li><b>Plans around the deadline.</b> The number of days left decides which delivery windows are searched at all, and reminders fire on the <i>last day to order</i>, not the birthday.</li>
-  <li><b>Finds real local shops near the recipient</b> (bakeries, florists, cafés) for the same-day case, which is exactly the long-distance problem.</li>
+  <li><b>Finds real local shops near the recipient</b> (bakeries, florists, cafés) for the same-day case: the long-distance situation from Section 2.</li>
   <li><b>Group use:</b> one Christmas budget split across a list, "chip in with friends," and calendar reminders the organizer can share.</li>
 </ol>
-<p>Being honest: each piece exists somewhere. The new part is combining memory, deadline-aware planning and multi-agent shopping, with prompt-injection defenses, for the person doing the remembering.</p>
+<p>Each piece exists somewhere on its own. The new part is combining memory, deadline-aware planning and multi-agent shopping, with prompt-injection defenses, for the person doing the remembering.</p>
 
 <!-- 4. THE AGENTS -->
 <h2><span class="num">4 ·</span> The agents</h2>
@@ -135,7 +135,7 @@
 <div class="step"><span class="n">2</span><div><b>Idea agent</b> (1 call): 6 concepts, starting from her saved wishlist item (pottery class): "A pottery class together," "A small family photo album with handwritten captions," "A birthday letter bundle from the family," "A planned birthday outing…"</div></div>
 
 <div class="step"><span class="n">3</span><div><b>Four shoppers in parallel.</b> Same day found 1 candidate; 2–3 days found 3 and <b>hid 1 suspicious listing</b> (the planted "Luxe crystal gift box," Section 6); 7–14 days found 1; <b>Nearby looked at 4 real Glen Allen shops</b> and proposed 2, including Dalia's Ice Cream &amp; Bakery, 5.6 km away.</div></div>
-<div class="step"><span class="n">4</span><div><b>House rules</b> checked every candidate against her budget, dislikes and gift history in code.</div></div>
+<div class="step"><span class="n">4</span><div><b>House rules</b> (code) checked all 7 candidates against her $60 budget, dislikes and gift history. None needed removing in this run. In the comparison in Section 7, these checks are why Giftwise had 0 violations.</div></div>
 <div class="step"><span class="n">5</span><div><b>Critic</b> kept 4 and cut 3 with reasons. It cut the "Open-when letters kit" because the <i>7–14 day delivery window could arrive after her birthday, which is 12 days away</i>, and the restaurant gift card as "less personal than the family keepsakes."</div></div>
 <div class="figrow">
 <figure>{{IMG:03-agents-working.jpg}}<figcaption>Figure 3. Live progress: the Idea agent is done; four shoppers search in parallel while the Critic waits.</figcaption></figure>
@@ -143,7 +143,7 @@
 </div>
 <div class="figrow">
 <figure>{{IMG:06-local-picks.jpg}}<figcaption>Figure 5. Same-day picks from real nearby shops: distance and address, what to order, an estimated price, a "call first" note from the Critic, and buttons to find delivery, open the map, save the idea, write a card, or split the cost with friends.</figcaption></figure>
-<figure>{{IMG:07-critic-cuts.jpg}}<figcaption>Figure 6. The Critic's cuts are shown, not hidden. The 7–14 day window ended up empty, which is honest: nothing there was good enough.</figcaption></figure>
+<figure>{{IMG:07-critic-cuts.jpg}}<figcaption>Figure 6. The Critic's cuts are shown, not hidden. The 7–14 day window ended up empty because nothing there passed the Critic.</figcaption></figure>
 </div>
 <p><b>Result:</b> 4 picks (2 local same-day, 2 shipped in 2–3 days), each with a store link, using <b>12 calls, 13,851 input tokens (2,120 cached), 3,164 output tokens: $0.0028</b> (Figure 7).</p>
 
@@ -197,7 +197,7 @@
   <tr><td><b>Injection via links</b></td><td>A pasted URL points at the server's own network (<code>127.0.0.1</code>, cloud metadata <code>169.254.169.254</code>)</td><td>Only http/https on normal ports; private, local and reserved addresses refused, including after redirects; page text scrubbed</td><td>Tested: 4 of 4 blocked</td></tr>
   <tr><td><b>Agent invents facts</b></td><td>A shopper returns a product id that doesn't exist; the parser invents a match</td><td>Ids must be ones the tool actually returned, otherwise dropped; match ids checked against saved people; every idea keeps its source snippet</td><td>Code (<code>finder.py</code>)</td></tr>
   <tr><td><b>Agent breaks the rules</b></td><td>Suggests a hoodie to someone who hates hoodies, a repeat gift, or something over budget</td><td>House rules in code after the shoppers, so no model can override them</td><td>Section 7: 0 violations in 14 picks</td></tr>
-  <tr><td><b>Wrong action</b></td><td>An agent buys, sends or saves something</td><td>Agents have no such tools. Parsed notes are a draft until the user clicks save; card notes and group messages are copy-only</td><td>Design</td></tr>
+  <tr><td><b>Wrong action</b></td><td>An agent buys, sends or saves something</td><td>Agents have no such tools. Parsed notes are a draft until the user clicks save; card notes and group messages are copy-only</td><td>By design: no buy/send tool exists</td></tr>
   <tr><td><b>Loops / overspending</b></td><td>A bug or abuse runs agents in a loop</td><td>Per-agent request and tool-call limits; a <b>daily spending cap</b> checked before every AI call ($0.50 or 400 calls by default)</td><td>Figure 9</td></tr>
   <tr><td><b>Privacy</b></td><td>Addresses, photos and personal notes leak</td><td>Location sent only to OpenStreetMap (a zip code is enough); photos never sent to the AI; data stays in a local file, excluded from git; no keys in the repo</td><td>README, <code>.gitignore</code></td></tr>
   <tr><td><b>Provider safety filter</b></td><td>The AI provider refuses a request that contains attack text</td><td>Caught and shown as a plain message instead of a crash. This is how I discovered the need to <i>remove</i> attack lines before sending</td><td>Development log</td></tr>
@@ -231,7 +231,7 @@
 <div class="todo">Real user test (Tier 3 evidence). Have your roommate (and if possible the Silver cohort rep) try it for ~10 minutes. Before they start, ask: "How long did picking your last gift for family take?" Record their answer, their Giftwise times (footer, or http://localhost:8020/api/metrics), one quote, and a screenshot. Replace this box with: who they are, before vs. after time, and the quote.</div>
 
 <h3>Reach, for the cohort example</h3>
-<p>For the Silver cohort tradition, the rep would add classmates once (by hand, or from a calendar or contacts export), download the reminders file so their calendar alerts them on the last day to order, and use the Nearby agent to find a bakery near campus for each birthday. At roughly $0.002 per search, a whole cohort's year of birthdays costs about 12 cents in AI. The real value is that no birthday gets missed, and the job can be handed to the next rep with the full history intact.</p>
+<p>For the Silver cohort tradition, the workflow already works: add classmates (by hand, or from a calendar or contacts export), download the reminders file so the rep's calendar alerts them on the last day to order, and use the Nearby agent to find a bakery near campus. At about $0.002 per search, a year of cohort birthdays costs about 12 cents in AI, and the saved list can be handed to the next rep. Spreadsheet import is the missing piece (Section 8).</p>
 
 <!-- 8. LIMITS -->
 <h2><span class="num">8 ·</span> Limits and next steps</h2>
@@ -253,7 +253,8 @@
   <li><b>A proper study:</b> 10–20 people, time-to-gift and satisfaction before and after, plus a larger version of the ChatGPT comparison.</li>
 </ol>
 
-<h2><span class="num">Appendix ·</span> More screens</h2>
+<h2><span class="num">Appendix ·</span> Memory in the app</h2>
+<p>Evidence for the "remembers across occasions" claim in Section 3: what the agents read before every search.</p>
 <div class="figrow">
 <figure>{{IMG:02-people.jpg}}<figcaption>People: cartoon portraits drawn in code (or an uploaded photo), wishlist, dislikes, dates and gift history.</figcaption></figure>
 <figure>{{IMG:09-profile.jpg}}<figcaption>A person's profile panel: edit details, mark gifts as given (with what you paid), add an idea from a product link, or find a gift.</figcaption></figure>
