@@ -1,6 +1,6 @@
 # Giftwise — be the friend who remembers
 
-AI Foundations final project. A gift-planning web app: import the people you buy for, keep their wishlists, get reminded before their birthdays, and get gift ideas that match your vibe and arrive in time.
+AI Foundations final project. Repo: https://github.com/ask267/giftwise. The app runs locally (see **Run it**). Report: `report/report.html` · Slides: `report/slides.html`. A gift-planning web app: import the people you buy for, keep their wishlists, get reminded before their birthdays, and get gift ideas that match your vibe and arrive in time.
 
 **Built so far:**
 0. **Upcoming dashboard** (home screen). Everyone's birthdays, anniversaries and weddings plus Christmas, sorted by date and colored by urgency, with the last day to order for each delivery speed and a "Find a gift →" button that pre-fills the finder. Import birthdays from a calendar export (`.ics`) or contacts export (`.vcf`). These are parsed in plain code, with no AI call. Or type in a missing birthday by hand.
