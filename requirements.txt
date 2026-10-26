@@ -1,0 +1,8 @@
+# Gift app backend: FastAPI + PydanticAI (OpenAI models through Portkey)
+#   python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
+pydantic-ai-slim[openai]>=2.55,<3
+fastapi>=0.143,<1
+uvicorn[standard]>=0.54,<1
+python-dotenv>=1.0,<2
+python-multipart>=0.0.20
+certifi>=2024.0
