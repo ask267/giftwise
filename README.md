@@ -20,19 +20,25 @@ React + Vite (frontend/, :5190) ──► FastAPI (backend/main.py, :8020)
 
 ## Run it
 
-Requires Python 3.11+ and Node 20+. `PORTKEY_API_KEY` is read from the root `.env` of `AI Foundations/`.
+Requires **Python 3.11+** and **Node 20+**. The app reads `PORTKEY_API_KEY` from a `.env` file in this repo's folder or the folder above it (see `.env.example`). The course key works with `gpt-6-luna` only.
 
 ```bash
-# once
+# 1. get the code (the .env with PORTKEY_API_KEY can sit one folder above)
+git clone https://github.com/ask267/giftwise.git
+cd giftwise
+
+# 2. install, once (about 1–2 minutes)
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 cd frontend && npm install && cd ..
 
-# backend (terminal 1)
+# 3. backend (terminal 1, from the giftwise folder)
 cd backend && ../.venv/bin/python -m uvicorn main:app --port 8020
 
-# frontend (terminal 2)
-cd frontend && npm run dev     # http://localhost:5190
+# 4. frontend (terminal 2, from the giftwise folder)
+cd frontend && npm run dev
 ```
+
+Open **http://localhost:5190**. Ports 8020 and 5190 must be free.
 
 Set `GIFT_MODEL` to use a different model.
 
