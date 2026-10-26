@@ -5,3 +5,4 @@ data/*.json
 .env
 dist/
 data/*.jsonl
+report/*.mp4
