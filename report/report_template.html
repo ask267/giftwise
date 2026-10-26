@@ -223,12 +223,19 @@
 <p>The plain model suggested a "personalized leather golf scorecard holder" for Dad with 6 days left, and a handmade mug for Mom with 2. Read honestly: when everything is typed into the prompt, a modern model mostly respects dislikes and budget. My first version of the checker even flagged a false positive ("socks… safer than another hoodie"), which I fixed. Giftwise's real advantages are that the user <b>doesn't retype anything</b> (it remembers), it <b>never proposes something that can't arrive</b>, and every pick is <b>orderable</b>. This is one run of 6 cases, not a statistical study.</p>
 
 <h3>Time</h3>
-<p>The app measures its own task times (<code>data/metrics.jsonl</code>, excluding instant cache replays). From my own first session:</p>
+<p>The app measures its own task times (<code>data/metrics.jsonl</code>, excluding instant cache replays). From the first real session logged in the app:</p>
 <ul>
   <li><b>Messy notes → 5 people saved with their ideas: 19.6 seconds.</b></li>
   <li><b>"Find gifts" → choosing a delivery option for a pick: 30.3 seconds.</b></li>
 </ul>
-<div class="todo">Real user test (Tier 3 evidence). Have your roommate (and if possible the Silver cohort rep) try it for ~10 minutes. Before they start, ask: "How long did picking your last gift for family take?" Record their answer, their Giftwise times (footer, or http://localhost:8020/api/metrics), one quote, and a screenshot. Replace this box with: who they are, before vs. after time, and the quote.</div>
+<h3>A real user: my husband, shopping for his sister</h3>
+<p>My husband used Giftwise on his own to plan a gift for his sister Asmita, who lives in Arlington, VA. He added her (sister, likes makeup), set her birthday (October 10), a $60 budget, the vibes "sentimental," "funny" and "fancy," and her city. This is his actual result:</p>
+<figure class="solo">{{IMG:11-user-test.jpg}}<figcaption>Figure 10. His run. The Nearby agent found Tivoli Gourmet &amp; Pastry 2 km from her and suggested "a small birthday cake with 'Asmita' written on it" (~$45), with the Critic's note to confirm delivery closer to the date. The catalog shoppers added a Target sheet-mask spa kit ($25, same day) and a Glossier set ($52, 2–3 days), each with a "Shop at [store]" link.</figcaption></figure>
+<ul>
+  <li><b>What it did for him:</b> one search turned "my sister, likes makeup, lives in Arlington" into a personal local option and orderable store picks, using what it knew about her and where she lives.</li>
+  <li><b>Measured cost of his run</b> (from the app's log): 12 AI calls, 15,626 input tokens (1,350 cached), 3,446 output tokens: <b>$0.0032</b>.</li>
+  <li><b>What it showed me:</b> the long-distance case is exactly where the Nearby agent matters. A cake with her name from a bakery near <i>her</i> is something a generic gift list can't give.</li>
+</ul>
 
 <h3>Reach, for the cohort example</h3>
 <p>For the Silver cohort tradition, the workflow already works: add classmates (by hand, or from a calendar or contacts export), download the reminders file so the rep's calendar alerts them on the last day to order, and use the Nearby agent to find a bakery near campus. At about $0.002 per search, a year of cohort birthdays costs about 12 cents in AI, and the saved list can be handed to the next rep. Spreadsheet import is the missing piece (Section 8).</p>
@@ -242,7 +249,7 @@
   <li><b>No spreadsheet import yet.</b> The cohort's birthday list is an Excel sheet, but the app imports calendar (.ics) and contacts (.vcf) files, not .xlsx or .csv.</li>
   <li><b>Single user, local only:</b> no accounts or sharing, the spend cap is global rather than per user, and the app is not hosted.</li>
   <li><b>Keyword catalog search</b> sometimes leaves a delivery window empty (Section 5).</li>
-  <li><b>Small evaluation:</b> 6 test people and the author's own timings. A real user study is still needed.</li>
+  <li><b>Small evaluation:</b> 6 test people, one real outside user (my husband) and two logged task timings. A proper user study is still needed.</li>
 </ul>
 <h3>With another month</h3>
 <ol>
