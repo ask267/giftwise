@@ -244,6 +244,9 @@ async def run_finder(req: FinderRequest, person: Person) -> AsyncIterator[dict]:
     if not req.fresh and (hit := _load_cache().get(key)):
         result = FinderResult.model_validate(hit)
         result.cached = True
+        for pk in result.picks:  # store links may have improved since this was cached
+            if not pk.is_local and pk.product_id in catalog.CATALOG:
+                pk.link = catalog.CATALOG[pk.product_id].link
         for name in ["Idea", *(f"Shopping · {catalog.TIER_LABEL[t]}" for t in tiers), *([NEARBY] if req.location else []), "Critic"]:
             yield _event(name, "done", "from cache")
         yield {"type": "result", "result": result.model_dump(mode="json")}

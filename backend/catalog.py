@@ -8,11 +8,11 @@ the Critic and the UI can see it.
 from __future__ import annotations
 
 import re
-from urllib.parse import quote_plus
 
 from pydantic import BaseModel
 
 from catalog_data import ROWS
+from store_links import store_link
 from safety import scrub
 
 Tier = str  # "same_day" | "fast" | "planned"
@@ -34,7 +34,8 @@ class Product(BaseModel):
 
     @property
     def link(self) -> str:
-        return f"https://www.google.com/search?tbm=shop&q={quote_plus(f'{self.title} {self.store}')}"
+        """The store's own site (its search results for this item, or its shop page)."""
+        return store_link(self.store, self.title, self.id)[0]
 
 
 def _build() -> dict[str, Product]:

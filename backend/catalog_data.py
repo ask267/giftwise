@@ -18,7 +18,7 @@ ROWS = [
     ("food-04", "Artisan cheese & charcuterie box", "Murray's Cheese", 85, [F], ["fancy"], ["food", "wine", "cooking"], "Curated cheese, cured meats and crackers, shipped cold."),
     ("food-05", "Chocolate truffle collection", "Compartés", 48, [F], ["fancy", "sentimental"], ["sweets", "chocolate"], "Hand-painted gourmet chocolate truffles."),
     ("food-06", "Favorite-restaurant gift card", "DoorDash", 50, [S], ["practical", "experience"], ["food", "gift card"], "Instant e-gift card they can use at local restaurants."),
-    ("food-07", "Hot sauce tasting set", "Fuego Box", 40, [F], ["funny", "practical"], ["food", "cooking", "spicy"], "Six small-batch hot sauces from mild to brutal."),
+    ("food-07", "Hot sauce tasting set", "Heatonist", 40, [F], ["funny", "practical"], ["food", "cooking", "spicy"], "Six small-batch hot sauces from mild to brutal."),
     ("food-08", "Bagel & lox brunch kit", "Goldbelly", 75, [F], ["cozy", "fancy"], ["food", "brunch"], "NYC bagels, cream cheese and smoked salmon for a lazy brunch."),
 
     # ---------- coffee, tea, matcha ----------

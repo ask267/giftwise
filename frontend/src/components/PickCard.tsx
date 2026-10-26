@@ -91,7 +91,7 @@ export default function PickCard({ pick, personId, personName, occasion, vibes, 
           </>
         ) : (
           <a className="btn btn-primary btn-sm" href={pick.link} target="_blank" rel="noreferrer" onClick={() => onChosen('shop')}>
-            Shop →
+            {pick.store.startsWith('Local') ? 'Find one nearby →' : `Shop at ${pick.store} →`}
           </a>
         )}
         <button className="btn btn-ghost btn-sm" onClick={save} disabled={saved}>
