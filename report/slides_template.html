@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Giftwise · Slides</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root { --ink:#0f1115; --muted:#5c5f66; --paper:#f5f2ec; --yale:#00356b; --blue:#286dc0; --soft:#dde7f3;
+          --pink:#fbe1ec; --green:#e2ece6; --purple:#e7e2f3; --yellow:#f8edc9; }
+  .reveal-viewport { background: var(--paper); }
+  .reveal { font-family: "Inter Tight", "Helvetica Neue", Arial, sans-serif; color: var(--ink); font-size: 30px; }
+  .reveal .slides { text-align: left; }
+  .reveal h1, .reveal h2 { font-family: "Inter Tight", sans-serif; font-weight: 600; letter-spacing: -0.045em; text-transform: none; color: var(--ink); margin: 0 0 18px; }
+  .reveal h1 { font-size: 2.6em; line-height: 1.02; }
+  .reveal h2 { font-size: 1.6em; line-height: 1.08; }
+  .reveal em { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; color: var(--blue); letter-spacing: -0.01em; }
+  .eyebrow { font-family: "JetBrains Mono", monospace; font-size: 0.5em; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
+  .muted { color: var(--muted); }
+  .small { font-size: 0.62em; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card { border-radius: 20px; padding: 20px 22px; font-size: 0.7em; line-height: 1.4; }
+  .card b { display: block; font-size: 1.15em; margin-bottom: 6px; letter-spacing: -0.02em; }
+  .pink { background: var(--pink); } .green { background: var(--green); } .purple { background: var(--purple); } .yellow { background: var(--yellow); } .blue { background: var(--soft); }
+  .big { font-size: 2.1em; font-weight: 600; letter-spacing: -0.05em; line-height: 1; color: var(--yale); }
+  .shot { width: 100%; border-radius: 14px; border: 1px solid #e2ddd2; box-shadow: 0 24px 50px -30px rgba(15,17,21,.45); }
+  .cap { font-size: 0.45em; color: var(--muted); margin-top: 6px; }
+  .reveal ul { margin: 0 0 0 1em; } .reveal li { margin: 10px 0; font-size: 0.82em; line-height: 1.35; }
+  table.t { width: 100%; border-collapse: collapse; font-size: 0.6em; }
+  table.t th, table.t td { padding: 9px 12px; border-bottom: 1px solid #e2ddd2; text-align: left; }
+  table.t th { color: var(--muted); font-weight: 500; }
+  table.t td.r, table.t th.r { text-align: right; font-variant-numeric: tabular-nums; }
+  table.t tr.hl td { font-weight: 700; color: var(--yale); }
+  .bar { display: grid; grid-template-columns: 170px 1fr 110px; align-items: center; gap: 12px; font-size: 0.55em; margin: 10px 0; }
+  .bar span.b { height: 26px; border-radius: 8px; background: var(--blue); display: block; }
+  .todo { background: #fff3b0; border: 2px dashed #c9a400; border-radius: 14px; padding: 12px 16px; font-size: 0.55em; }
+  .pill { display: inline-block; padding: 4px 12px; border-radius: 999px; font-family: "JetBrains Mono", monospace; font-size: 0.45em; letter-spacing: .06em; text-transform: uppercase; background: var(--ink); color: #fff; }
+  .diagram svg { width: 100%; height: auto; max-height: 560px; }
+</style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- 1 TITLE -->
+<section>
+  <div class="grid2" style="grid-template-columns: 1.05fr 0.95fr; align-items:center">
+    <div>
+      <div class="eyebrow">AI Foundations for Managers · Final Project</div>
+      <h1>Giftwise: <em>be the friend who remembers.</em></h1>
+      <p style="font-size:.75em">Your messy gift notes and birthday lists become a reminder dashboard, plus a team of AI agents that finds a gift that fits the person, the budget and the days left, with a real place to order it.</p>
+      <p class="small muted">Archita Kadam</p>
+    </div>
+    <div>{{IMG:01-upcoming.jpg}}</div>
+  </div>
+</section>
+
+<!-- 2 PROBLEM -->
+<section>
+  <div class="eyebrow">The problem</div>
+  <h2>Remembering <em>in time</em> is the hard part.</h2>
+  <div class="grid3">
+    <div class="card purple"><b>Far from family</b>My roommate and I kept asking what to get our families now that we live far away. Ideas are scattered in Notes; gifts need to <i>arrive</i>.</div>
+    <div class="card green"><b>Silver cohort cakes</b>Our cohort gets a cake for every birthday. One rep tracks it all in a spreadsheet, all year.</div>
+    <div class="card yellow"><b>Remembering late costs options</b>$60 budget, our catalog: <span class="big" style="font-size:1.5em;display:block;margin:6px 0">31 of 75</span>gifts can still arrive 1 day out. All 75 at 14 days.</div>
+  </div>
+  <p class="small muted" style="margin-top:18px">Today: calendar alerts on the day itself, wishlists the <i>recipient</i> must build, and ChatGPT lists you retype every time, with no timing and no store.</p>
+</section>
+
+<!-- 3 WHAT'S NEW -->
+<section>
+  <div class="eyebrow">What's new</div>
+  <h2>Memory + deadline + real shops, <em>in one place.</em></h2>
+  <div class="grid2">
+    <div class="card blue"><b>Starts from what you already keep</b>Paste messy iPhone notes, a screenshot, or a calendar/contacts export. An agent sorts it into people, ideas, dislikes, past gifts and dates.</div>
+    <div class="card pink"><b>Remembers across occasions</b>"NOT another hoodie" and last year's gift are saved and enforced in code, with no retyping.</div>
+    <div class="card yellow"><b>Plans around the deadline</b>Days left decide which delivery windows are searched. Reminders fire on the <i>last day to order</i>.</div>
+    <div class="card green"><b>Real local shops near them</b>Bakeries, florists and cafés near the recipient for same-day gifts, the long-distance case.</div>
+  </div>
+  <p class="small muted" style="margin-top:14px">Compared against: ChatGPT/Gemini, Amazon Wish List, Giftster, Elfster, reminder apps, store gift guides, DoorDash.</p>
+</section>
+
+<!-- 4 AGENTS -->
+<section>
+  <div class="eyebrow">How the agents work</div>
+  <div class="diagram">{{DIAGRAM}}</div>
+  <p class="small muted" style="margin-top:6px">7 agents on gpt-6-luna. The orchestrator and the house rules are plain code, so no model can change the steps, budget or delivery rules. Shoppers run in parallel; each only returns ids its tool showed it.</p>
+</section>
+
+<!-- 5 DEMO -->
+<section>
+  <div class="eyebrow">Demo · one real run</div>
+  <h2 style="font-size:1.2em">Mom, birthday in 12 days, $60, Glen Allen, VA</h2>
+  <div class="grid2">
+    <div>{{IMG:04-agents-done.jpg}}<div class="cap">6 agents · 4 shoppers in parallel · Critic kept 4, cut 3 (one "could arrive after her birthday")</div></div>
+    <div>{{IMG:06-local-picks.jpg}}<div class="cap">Same-day picks from real nearby shops: distance, what to order, "call first," order links</div></div>
+  </div>
+</section>
+
+<!-- 6 COST -->
+<section>
+  <div class="eyebrow">Cost to run · measured</div>
+  <h2>A gift search costs <em>under a fifth of a cent.</em></h2>
+  <div class="grid2">
+    <div>
+      <div class="big">$0.00175</div>
+      <p class="small muted">median search over 21 logged runs: 6 calls, 8,729 in / 2,021 out tokens</p>
+      <table class="t">
+        <tr><th>Scale</th><th class="r">Per month</th></tr>
+        <tr><td>1 user</td><td class="r">$0.007</td></tr>
+        <tr><td>100 users</td><td class="r">$0.66</td></tr>
+        <tr><td>10,000 users</td><td class="r">$66 (≈$310 in Dec)</td></tr>
+        <tr class="hl"><td>A cohort's year of birthdays</td><td class="r">≈ $0.12 / year</td></tr>
+      </table>
+    </div>
+    <div>
+      <p class="small" style="margin:0 0 8px"><b>Skip shoppers that can't arrive in time:</b></p>
+      <div class="bar"><span>1 window · 4.5 calls</span><span class="b" style="width:43%"></span><span>$0.00113</span></div>
+      <div class="bar"><span>2 windows · 6 calls</span><span class="b" style="width:66%"></span><span>$0.00174</span></div>
+      <div class="bar"><span>3 windows · 11 calls</span><span class="b" style="width:100%"></span><span>$0.00262</span></div>
+      <ul class="small" style="margin-top:14px">
+        <li>Cheapest model · plain code where AI isn't needed</li>
+        <li>Result cache: repeat searches are free</li>
+        <li>Trade-off: keyword search sometimes leaves a window empty</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 7 SAFETY -->
+<section>
+  <div class="eyebrow">Safety · defenses that fired</div>
+  <h2 style="font-size:1.25em">Attacks blocked, <em>spending capped.</em></h2>
+  <div class="grid2" style="grid-template-columns: 1fr 1fr">
+    <div>{{IMG:08-injection-blocked.jpg}}<div class="cap">Prompt injection in notes: 2 planted lines ignored and shown to the user</div></div>
+    <div>{{IMG:10-spend-cap.jpg}}<div class="cap">Daily spending cap stopping a run</div></div>
+  </div>
+  <ul class="small" style="margin-top:10px">
+    <li>Listings that instruct the AI are hidden · private-address links refused · house rules in code · agents can't buy, send or save</li>
+  </ul>
+</section>
+
+<!-- 8 IMPACT -->
+<section>
+  <div class="eyebrow">Impact · the numbers</div>
+  <h2>Vs. "just ask ChatGPT" <em>(same 6 people)</em></h2>
+  <div class="grid2" style="grid-template-columns: 1.15fr .85fr">
+    <table class="t">
+      <tr><th>Checked by code</th><th class="r">Plain model</th><th class="r">Giftwise</th></tr>
+      <tr class="hl"><td>Suggestions with a problem</td><td class="r">2 / 30</td><td class="r">0 / 14</td></tr>
+      <tr><td>Custom item with &lt; 10 days left</td><td class="r">2</td><td class="r">0</td></tr>
+      <tr><td>Link to order it</td><td class="r">0</td><td class="r">14</td></tr>
+      <tr><td>Cost (6 people)</td><td class="r">$0.0015</td><td class="r">$0.0100</td></tr>
+    </table>
+    <div>
+      <div class="card blue" style="font-size:.6em"><b>Measured time in the app</b>Messy notes → 5 people saved: <b style="display:inline;color:var(--yale)">19.6 s</b><br>"Find gifts" → chosen pick: <b style="display:inline;color:var(--yale)">30.3 s</b></div>
+      <div class="todo" style="margin-top:12px">Add real user result: who tried it, their usual time vs. Giftwise time, one quote</div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 NEXT -->
+<section>
+  <div class="eyebrow">What's next</div>
+  <h2>From demo catalog <em>to the real world.</em></h2>
+  <div class="grid2">
+    <div class="card yellow"><b>Live products</b>Shopping APIs with real prices and stock instead of the ~100-item demo catalog.</div>
+    <div class="card green"><b>Cohort mode</b>Import the cohort's Excel birthday list, assign a weekly "cake captain," and hand off to the next rep.</div>
+    <div class="card pink"><b>Confirm same-day</b>Delivery and florist APIs to check that a nearby shop can deliver today.</div>
+    <div class="card purple"><b>Hosted + a real study</b>Sign-in, per-user spend caps, texted reminders, and a 10–20 person time and satisfaction study.</div>
+  </div>
+  <p class="small muted" style="margin-top:16px">Thank you · Giftwise · Archita Kadam</p>
+</section>
+
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({ hash: true, width: 1280, height: 760, margin: 0.06, transition: 'slide', controls: true, progress: true, center: true });
+</script>
+</body>
+</html>
