@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 600" font-family="Inter Tight, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0f1115"/></marker>
+    <style>
+      .box{stroke:#0f1115;stroke-width:1.4}
+      .t{font-size:15px;font-weight:600;fill:#0f1115}
+      .s{font-size:11.5px;fill:#3a3d44}
+      .m{font-family:JetBrains Mono, Menlo, monospace;font-size:10.5px;fill:#3a3d44}
+      .ln{stroke:#0f1115;stroke-width:1.4;fill:none;marker-end:url(#a)}
+      .dash{stroke:#5c5f66;stroke-width:1.2;fill:none;stroke-dasharray:4 4;marker-end:url(#a)}
+    </style>
+  </defs>
+
+  <!-- user + orchestrator -->
+  <rect x="20" y="250" width="120" height="70" rx="14" fill="#ffffff" class="box"/>
+  <text x="80" y="280" text-anchor="middle" class="t">Giver</text>
+  <text x="80" y="298" text-anchor="middle" class="s">person · date</text>
+  <text x="80" y="312" text-anchor="middle" class="s">budget · vibes</text>
+
+  <rect x="170" y="220" width="160" height="130" rx="14" fill="#dde7f3" class="box"/>
+  <text x="250" y="246" text-anchor="middle" class="t">Orchestrator</text>
+  <text x="250" y="263" text-anchor="middle" class="m">plain Python, not an LLM</text>
+  <text x="250" y="286" text-anchor="middle" class="s">days left → which</text>
+  <text x="250" y="301" text-anchor="middle" class="s">delivery windows run</text>
+  <text x="250" y="322" text-anchor="middle" class="s">spend cap · cache check</text>
+  <text x="250" y="337" text-anchor="middle" class="s">streams progress</text>
+  <path d="M140 285 H168" class="ln"/>
+
+  <!-- idea -->
+  <rect x="360" y="235" width="140" height="100" rx="14" fill="#e7e2f3" class="box"/>
+  <text x="430" y="262" text-anchor="middle" class="t">Idea agent</text>
+  <text x="430" y="282" text-anchor="middle" class="s">profile + vibes →</text>
+  <text x="430" y="297" text-anchor="middle" class="s">6–8 gift concepts</text>
+  <text x="430" y="318" text-anchor="middle" class="m">no tools</text>
+  <path d="M330 285 H358" class="ln"/>
+
+  <!-- shoppers -->
+  <g>
+    <rect x="535" y="40" width="190" height="92" rx="14" fill="#f8edc9" class="box"/>
+    <text x="630" y="66" text-anchor="middle" class="t">Shopping · Same day</text>
+    <text x="630" y="86" text-anchor="middle" class="m">tool: search_catalog</text>
+    <text x="630" y="102" text-anchor="middle" class="s">locked to tier + budget</text>
+    <text x="630" y="118" text-anchor="middle" class="s">ids it saw only</text>
+
+    <rect x="535" y="148" width="190" height="92" rx="14" fill="#e2ece6" class="box"/>
+    <text x="630" y="174" text-anchor="middle" class="t">Shopping · Nearby</text>
+    <text x="630" y="194" text-anchor="middle" class="m">tool: search_nearby</text>
+    <text x="630" y="210" text-anchor="middle" class="s">real shops ≤5 km via</text>
+    <text x="630" y="226" text-anchor="middle" class="s">OpenStreetMap</text>
+
+    <rect x="535" y="256" width="190" height="92" rx="14" fill="#f8edc9" class="box"/>
+    <text x="630" y="282" text-anchor="middle" class="t">Shopping · 2–3 days</text>
+    <text x="630" y="302" text-anchor="middle" class="m">tool: search_catalog</text>
+    <text x="630" y="318" text-anchor="middle" class="s">runs if ≥ 3 days left</text>
+
+    <rect x="535" y="364" width="190" height="92" rx="14" fill="#f8edc9" class="box"/>
+    <text x="630" y="390" text-anchor="middle" class="t">Shopping · 7–14 days</text>
+    <text x="630" y="410" text-anchor="middle" class="m">tool: search_catalog</text>
+    <text x="630" y="426" text-anchor="middle" class="s">runs if ≥ 10 days left</text>
+  </g>
+  <path d="M500 285 C515 285 515 86 533 86" class="ln"/>
+  <path d="M500 285 C515 285 515 194 533 194" class="ln"/>
+  <path d="M500 285 H533 V302" class="ln"/>
+  <path d="M500 285 C515 285 515 410 533 410" class="ln"/>
+  <text x="545" y="480" class="m">run in parallel · each ≤ 8 calls, ≤ 12 tool calls</text>
+
+  <!-- house rules + critic -->
+  <rect x="760" y="170" width="200" height="88" rx="14" fill="#ffffff" class="box"/>
+  <text x="860" y="196" text-anchor="middle" class="t">House rules</text>
+  <text x="860" y="213" text-anchor="middle" class="m">plain Python</text>
+  <text x="860" y="231" text-anchor="middle" class="s">over budget · dislikes ·</text>
+  <text x="860" y="246" text-anchor="middle" class="s">repeat gifts → removed</text>
+  <path d="M725 86 C745 86 745 214 758 214" class="ln"/>
+  <path d="M725 194 H758" class="ln"/>
+  <path d="M725 302 C745 302 745 214 758 214" class="ln"/>
+  <path d="M725 410 C745 410 745 214 758 214" class="ln"/>
+
+  <rect x="760" y="290" width="200" height="100" rx="14" fill="#fbe1ec" class="box"/>
+  <text x="860" y="316" text-anchor="middle" class="t">Critic agent</text>
+  <text x="860" y="336" text-anchor="middle" class="s">fit · timing · variety</text>
+  <text x="860" y="351" text-anchor="middle" class="s">ranks, cuts with reasons,</text>
+  <text x="860" y="366" text-anchor="middle" class="s">adds "check this" notes</text>
+  <path d="M860 258 V288" class="ln"/>
+
+  <rect x="760" y="420" width="200" height="70" rx="14" fill="#0f1115"/>
+  <text x="860" y="448" text-anchor="middle" font-size="15" font-weight="600" fill="#fff">Picks by delivery window</text>
+  <text x="860" y="468" text-anchor="middle" font-size="11.5" fill="#cfd3da">store links · tokens &amp; cost</text>
+  <path d="M860 390 V418" class="ln"/>
+
+  <!-- side agents -->
+  <rect x="20" y="430" width="220" height="70" rx="14" fill="#ffffff" class="box"/>
+  <text x="130" y="458" text-anchor="middle" class="t">Notes Parser agent</text>
+  <text x="130" y="477" text-anchor="middle" class="s">messy notes / screenshot →</text>
+  <text x="130" y="491" text-anchor="middle" class="s">people profiles (you confirm)</text>
+
+  <rect x="260" y="430" width="160" height="70" rx="14" fill="#ffffff" class="box"/>
+  <text x="340" y="458" text-anchor="middle" class="t">Message agent</text>
+  <text x="340" y="477" text-anchor="middle" class="s">card notes, on demand</text>
+
+  <rect x="260" y="515" width="160" height="62" rx="14" fill="#ffffff" class="box"/>
+  <text x="340" y="541" text-anchor="middle" class="t">Link Reader agent</text>
+  <text x="340" y="559" text-anchor="middle" class="s">only if page metadata fails</text>
+
+  <rect x="20" y="515" width="220" height="62" rx="14" fill="#ffffff" class="box" stroke-dasharray="5 4"/>
+  <text x="130" y="541" text-anchor="middle" class="t">Calendar/contacts import</text>
+  <text x="130" y="559" text-anchor="middle" class="m">plain Python, no AI</text>
+
+  <path d="M80 320 V428" class="dash"/>
+
+  <!-- safety strip -->
+  <rect x="20" y="20" width="490" height="170" rx="14" fill="#0f1115"/>
+  <text x="40" y="50" font-size="15" font-weight="600" fill="#fff">Safety layer (applies to every agent)</text>
+  <text x="40" y="76" font-size="12" fill="#cfd3da">• Notes, seller listings and web pages are untrusted data, wrapped in tags</text>
+  <text x="40" y="96" font-size="12" fill="#cfd3da">• Lines aimed at an AI are removed before sending and shown to the user</text>
+  <text x="40" y="116" font-size="12" fill="#cfd3da">• Agents can't buy, send or save anything; ids are checked against what tools returned</text>
+  <text x="40" y="136" font-size="12" fill="#cfd3da">• Daily spend cap + per-agent request limits; link reader blocks private addresses</text>
+  <text x="40" y="156" font-size="12" fill="#cfd3da">• Location goes only to OpenStreetMap; photos never go to the AI</text>
+  <text x="40" y="176" font-size="12" fill="#9fb3d1">Model for every agent: gpt-6-luna via Portkey</text>
+</svg>
