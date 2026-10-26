@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getMetrics, getUsage, listPeople, type Person, type SpendStatus } from './api'
 import { money } from './format'
+import ChatWidget from './components/ChatWidget'
 import FinderPage from './components/FinderPage'
 import ImportPage from './components/ImportPage'
 import PeoplePage from './components/PeoplePage'
@@ -117,6 +118,15 @@ export default function App() {
           />
         )}
       </main>
+
+      <ChatWidget
+        onSpend={refreshSpend}
+        onContinue={(id) => {
+          setFinderPerson(id)
+          setPreset(null)
+          go('finder')
+        }}
+      />
 
       <footer className="site-footer">
         <div className="footer-row">

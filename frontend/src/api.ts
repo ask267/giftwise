@@ -284,3 +284,30 @@ export const recordMetric = (event: MetricEvent, seconds: number, detail?: strin
   call<{ ok: boolean }>('/api/metrics', json({ event, seconds: Math.round(seconds * 10) / 10, detail })).catch(() => null)
 export const getMetrics = () =>
   call<Partial<Record<MetricEvent, { count: number; median_seconds: number; fastest_seconds: number }>>>('/api/metrics')
+
+// ---------------------------------------------------------------- chat + decision memory
+
+export interface ChatMsg { role: 'you' | 'giftwise'; text: string; time: string }
+export interface ChatState { messages: ChatMsg[]; welcome: { text: string | null; person_id: string | null; person?: string } }
+export const getChat = () => call<ChatState>('/api/chat')
+export const sendChat = (message: string) => call<{ reply: string; usage: Usage }>('/api/chat', json({ message }))
+export const clearChat = () => call<{ cleared: boolean }>('/api/chat', { method: 'DELETE' })
+export const logAction = (person_id: string, action: string, title: string, store: string | null) =>
+  call<{ ok: boolean }>('/api/history/action', json({ person_id, action, title, store })).catch(() => null)
+
+// ---------------------------------------------------------------- reminders
+
+export interface ReminderState {
+  settings: { email: string | null; phone: string | null; auto_email: boolean; last_sent: string | null }
+  smtp_configured: boolean
+  upcoming: { person: string; occasion: string; date: string; days_left: number; order_by: string; text: string }[]
+  digest: string
+}
+export const getReminders = () => call<ReminderState>('/api/reminders')
+export const saveReminderSettings = (s: { email: string | null; phone: string | null; auto_email: boolean }) =>
+  call<ReminderState['settings']>('/api/reminders/settings', json(s))
+export const sendTestReminder = () => call<{ sent_to: string }>('/api/reminders/test', { method: 'POST' })
+
+export const mailtoLink = (to: string | null, subject: string, body: string) =>
+  `mailto:${encodeURIComponent(to ?? '')}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+export const smsLink = (to: string | null, body: string) => `sms:${(to ?? '').replace(/[^0-9+]/g, '')}?&body=${encodeURIComponent(body)}`

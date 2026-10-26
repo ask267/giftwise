@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { saveIdea, writeCard, type GiftPick, type Occasion, type Person, type Vibe } from '../api'
+import { logAction, saveIdea, writeCard, type GiftPick, type Occasion, type Person, type Vibe } from '../api'
 
 interface Props {
   pick: GiftPick
@@ -11,7 +11,12 @@ interface Props {
   onPersonUpdated: (p: Person) => void
 }
 
-export default function PickCard({ pick, personId, personName, occasion, vibes, onPersonUpdated, onChosen }: Props) {
+export default function PickCard({ pick, personId, personName, occasion, vibes, onPersonUpdated, onChosen: reportChosen }: Props) {
+  // every choice is remembered per person, so the chat can tell you where you left off
+  const onChosen = (what: string) => {
+    logAction(personId, what, pick.title, pick.store)
+    reportChosen(what)
+  }
   const [saved, setSaved] = useState(false)
   const [cards, setCards] = useState<string[] | null>(null)
   const [writing, setWriting] = useState(false)
@@ -49,6 +54,7 @@ export default function PickCard({ pick, personId, personName, occasion, vibes, 
     setWriting(true)
     setError(null)
     try {
+      logAction(personId, 'card', pick.title, pick.store)
       const res = await writeCard({ person_id: personId, occasion, gift_title: pick.title, vibes })
       setCards(res.options)
     } catch (e) {
@@ -100,7 +106,7 @@ export default function PickCard({ pick, personId, personName, occasion, vibes, 
         <button className="link-btn" onClick={card} disabled={writing}>
           {writing ? 'Writing…' : cards ? 'New card notes' : 'Write a card'}
         </button>
-        <button className="link-btn" onClick={() => setChipIn(!chipIn)}>
+        <button className="link-btn" onClick={() => { if (!chipIn) logAction(personId, 'chip in', pick.title, pick.store); setChipIn(!chipIn) }}>
           {chipIn ? 'Close' : 'Chip in with friends'}
         </button>
       </div>

@@ -54,7 +54,7 @@ Set `GIFT_MODEL` to use a different model.
 | Store links for every catalog store | `backend/store_links.py` | Each store's own search or shop page |
 | Test inputs | `samples/` | `messy_note.txt` (includes a planted prompt-injection line), `note_screenshot.jpg`, `birthdays.ics`, `contacts.vcf` |
 | Demo people | `backend/demo.py` | Created by the **Load demo people** button; dates are relative to today |
-| Your own data | `data/` (created on first use) | `people.json`, caches, `usage_log.jsonl`, `metrics.jsonl`. Starts empty on a fresh clone and is git-ignored |
+| Your own data | `data/` (created on first use) | `people.json`, caches, `usage_log.jsonl`, `metrics.jsonl`, `history.jsonl`, `decisions.json`, `chat.json`, `reminders.json`. Starts empty on a fresh clone and is git-ignored |
 
 Live lookups happen over the internet only when a feature is used: OpenStreetMap for nearby shops (no key, results cached in `data/geo_cache.json`), and the product page when you paste a link. To start fresh, stop the backend and delete the `data/` files.
 
@@ -104,6 +104,10 @@ The page streams each agent's status live (newline-delimited JSON from `POST /ap
 
 **Time-saved measurements:** the browser records how long real tasks take: paste notes → people saved, and "Find gifts" → saving or shopping a pick. Timings go to `data/metrics.jsonl` (no personal data). `GET /api/metrics` returns the median per task, excluding instant cache replays, and the footer shows the median time to a gift idea.
 
+**Chat that remembers where you left off** (💬 button, bottom right, on every page): every gift search and what you did with the picks (saved, shopped, looked up delivery, wrote a card, chipped in) is logged per person in `data/history.jsonl`. Opening the chat shows a "where you left off" card built from that log in plain code (no AI call) with a **Continue with [person] →** button. The **Chat agent** answers with read-only tools (`upcoming`, `person_profile`, `gift_history`) and one write tool, `save_decision_note` ("leaning toward the Tivoli cake, decide by Nov 3"), saved in `data/decisions.json`. The conversation is kept in `data/chat.json`: the last 8 messages are sent each turn and older ones are folded into a short running summary, so long chats stay cheap (about $0.0002–0.0003 per message).
+
+**Email and text reminders** (Upcoming page): **✉️ Email reminder** / **💬 Text reminder** open your Mail or Messages app with this fortnight's reminders already written (with the last day to order). Each upcoming date also has its own 💬 / ✉️ buttons, handy for texting a learning team. The app never sends these itself. **Optional automatic email:** add the `GIFT_SMTP_*` settings from `.env.example` (e.g. a Gmail app password), save your email, and tick "Email me automatically". The backend checks hourly and sends at most one digest a day when something is within 2 weeks. No AI is involved, and it's off by default, so the app runs with only the Portkey key.
+
 **Gift history:** on People, hover an idea and click **✓ Given** to record it as given this year. House rules and the agents then never suggest it again.
 
 **Location privacy:** the recipient's location (a zip is enough) is sent only to OpenStreetMap to find shops, and saved on that person so you don't retype it. A bare 5-digit number is treated as a US zip (otherwise "06511" matches a neighborhood in Seoul). The resolved place is shown with the results so a wrong match is visible.
@@ -128,6 +132,9 @@ Try it with `samples/birthdays.ics`, `samples/contacts.vcf`, `samples/messy_note
 | `POST /api/people` · `PUT /api/people/{id}` | add / edit a person |
 | `POST /api/people/{id}/photo` | set or clear a profile photo |
 | `POST /api/metrics` · `GET /api/metrics` | record a task timing / median times |
+| `GET /api/chat` · `POST /api/chat` · `DELETE /api/chat` | chat state + where-you-left-off / send a message / clear the conversation |
+| `POST /api/history/action` | log what you did with a pick |
+| `GET /api/reminders` · `POST /api/reminders/settings` · `POST /api/reminders/test` | upcoming reminders + digest / save email, phone, auto-email / send a test email |
 | `GET /api/usage` | today's AI spend vs the daily cap |
 | `POST /api/people/{id}/ideas` | save one gift-finder pick to their ideas |
 | `POST /api/finder/run` | run the gift-finder team; streams agent events, then the result |

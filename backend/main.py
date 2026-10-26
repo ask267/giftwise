@@ -5,8 +5,10 @@ Run from this folder:  ../.venv/bin/python -m uvicorn main:app --port 8020
 
 from __future__ import annotations
 
+import asyncio
 import json
 import re
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -14,11 +16,14 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
 import calendar_import
+import chat
 import demo
 import link_reader
 import metrics
 import finder
+import history
 import notes_parser
+import reminders
 import store
 import usage
 from llm import MODEL_NAME
@@ -36,7 +41,14 @@ SAFETY_MESSAGE = (
     "(like \"ignore previous instructions\"). Remove that part and try again."
 )
 
-app = FastAPI(title="Gift app API")
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    task = asyncio.create_task(reminders.scheduler())  # optional daily reminder email
+    yield
+    task.cancel()
+
+
+app = FastAPI(title="Gift app API", lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5190", "http://127.0.0.1:5190"],
@@ -239,3 +251,93 @@ async def write_card(body: CardRequest) -> CardMessage:
         raise HTTPException(422, SAFETY_MESSAGE) from e
     except Exception as e:
         raise HTTPException(502, f"The message writer couldn't finish: {e}") from e
+
+
+# ---------------------------------------------------------------- chat + decision memory
+
+
+class ChatMessage(BaseModel):
+    message: str = Field(min_length=1, max_length=1000)
+
+
+class HistoryAction(BaseModel):
+    person_id: str
+    action: str = Field(max_length=30)
+    title: str = Field(max_length=200)
+    store: str | None = Field(None, max_length=100)
+
+
+@app.get("/api/chat")
+def chat_state() -> dict:
+    """Saved conversation + a 'where you left off' greeting built from history (no AI call)."""
+    return chat.state()
+
+
+@app.post("/api/chat")
+async def chat_reply(body: ChatMessage) -> dict:
+    try:
+        return await chat.reply(body.message)
+    except SpendingCapReached as e:
+        raise HTTPException(429, str(e)) from e
+    except BlockedBySafetyFilter as e:
+        raise HTTPException(422, SAFETY_MESSAGE) from e
+    except Exception as e:
+        raise HTTPException(502, f"The chat couldn't answer: {e}") from e
+
+
+@app.delete("/api/chat")
+def chat_clear() -> dict:
+    chat.clear()
+    return {"cleared": True}
+
+
+@app.post("/api/history/action")
+def history_action(body: HistoryAction) -> dict:
+    person = store.get_person(body.person_id)
+    if person is None:
+        raise HTTPException(404, "No person with that id.")
+    history.log_action(person.id, person.name, body.action, body.title, body.store)
+    return {"ok": True}
+
+
+# ---------------------------------------------------------------- reminders
+
+
+class ReminderSettingsIn(BaseModel):
+    email: str | None = Field(None, max_length=200)
+    phone: str | None = Field(None, max_length=40)
+    auto_email: bool = False
+
+
+@app.get("/api/reminders")
+def reminders_state() -> dict:
+    rows = reminders.upcoming()
+    s = reminders.load_settings()
+    return {"settings": s.model_dump(), "smtp_configured": reminders.smtp_configured(), "upcoming": rows,
+            "digest": reminders.digest_text(rows)}
+
+
+@app.post("/api/reminders/settings")
+def reminders_settings(body: ReminderSettingsIn) -> dict:
+    if body.email and not re.fullmatch(r"[^@\s]+@[^@\s]+\.[^@\s]+", body.email.strip()):
+        raise HTTPException(422, "That email address doesn't look right.")
+    old = reminders.load_settings()
+    s = reminders.save_settings(reminders.ReminderSettings(
+        email=(body.email or "").strip() or None, phone=(body.phone or "").strip() or None,
+        auto_email=body.auto_email, last_sent=old.last_sent))
+    return s.model_dump()
+
+
+@app.post("/api/reminders/test")
+def reminders_test() -> dict:
+    """Send the current digest now to the saved email (only if SMTP is set up in .env)."""
+    s = reminders.load_settings()
+    if not reminders.smtp_configured():
+        raise HTTPException(400, "Automatic email isn't set up. Add the GIFT_SMTP_* settings to .env (see README).")
+    if not s.email:
+        raise HTTPException(400, "Save your email address first.")
+    try:
+        reminders.send_email(s.email, "Giftwise test reminder", reminders.digest_text(reminders.upcoming()))
+    except Exception as e:
+        raise HTTPException(502, f"Couldn't send the email: {e}") from e
+    return {"sent_to": s.email}

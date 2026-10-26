@@ -36,6 +36,7 @@ from pydantic_ai import Agent, RunContext, UsageLimits
 from pydantic_ai.exceptions import ModelHTTPError
 
 import catalog
+import history
 import local_shops
 import usage as usage_mod
 from llm import MODEL_NAME, build_model
@@ -247,6 +248,8 @@ async def run_finder(req: FinderRequest, person: Person) -> AsyncIterator[dict]:
         for pk in result.picks:  # store links may have improved since this was cached
             if not pk.is_local and pk.product_id in catalog.CATALOG:
                 pk.link = catalog.CATALOG[pk.product_id].link
+        history.log_search(person.id, person.name, req.occasion, req.event_date.isoformat(), req.budget, req.vibes,
+                           [p.model_dump() for p in result.picks], cached=True)
         for name in ["Idea", *(f"Shopping · {catalog.TIER_LABEL[t]}" for t in tiers), *([NEARBY] if req.location else []), "Critic"]:
             yield _event(name, "done", "from cache")
         yield {"type": "result", "result": result.model_dump(mode="json")}
@@ -413,6 +416,8 @@ async def run_finder(req: FinderRequest, person: Person) -> AsyncIterator[dict]:
         location_found=location_found,
     )
     _save_cache(key, result)
+    history.log_search(person.id, person.name, req.occasion, req.event_date.isoformat(), req.budget, req.vibes,
+                       [p.model_dump() for p in picks], cached=False)
     usage_mod.log_run("finder", usage, person=person.name, days_left=days_left, tiers=tiers, nearby=bool(req.location))
     yield {"type": "result", "result": result.model_dump(mode="json")}
 

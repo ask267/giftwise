@@ -63,7 +63,7 @@
   <h2>Remembering <em>in time</em> is the hard part.</h2>
   <div class="grid3">
     <div class="card purple"><b>Far from family</b>My roommate and I kept asking what to get our families now that we live far away. Ideas are scattered in Notes; gifts need to <i>arrive</i>.</div>
-    <div class="card green"><b>Silver cohort cakes</b>Our cohort gets a cake for every birthday. One rep tracks it all in a spreadsheet, all year.</div>
+    <div class="card green"><b>Silver cohort cakes</b>Our cohort gets a cake for every birthday, but the list is an Excel sheet people must remember to check. Each learning team could add its people and get reminded automatically.</div>
     <div class="card yellow"><b>Remembering late costs options</b>$60 budget, our catalog: <span class="big" style="font-size:1.5em;display:block;margin:6px 0">31 of 75</span>gifts can still arrive 1 day out. All 75 at 14 days.</div>
   </div>
   <p class="small muted" style="margin-top:18px">Today: calendar alerts on the day itself, wishlists the <i>recipient</i> must build, and ChatGPT lists you retype every time, with no timing and no store.</p>
@@ -77,7 +77,7 @@
     <div class="card blue"><b>Starts from what you already keep</b>Paste messy iPhone notes, a screenshot, or a calendar/contacts export. An agent sorts it into people, ideas, dislikes, past gifts and dates.</div>
     <div class="card pink"><b>Remembers across occasions</b>"NOT another hoodie" and last year's gift are saved and enforced in code, with no retyping.</div>
     <div class="card yellow"><b>Plans around the deadline</b>Days left decide which delivery windows are searched. Reminders fire on the <i>last day to order</i>.</div>
-    <div class="card green"><b>Real local shops near them</b>Bakeries, florists and cafés near the recipient for same-day gifts, the long-distance case.</div>
+    <div class="card green"><b>Real local shops + memory chat</b>Bakeries near the recipient for same-day gifts, and a chat that remembers where you left off, plus email/text reminders.</div>
   </div>
   <p class="small muted" style="margin-top:14px">Compared against: ChatGPT/Gemini, Amazon Wish List, Giftster, Elfster, reminder apps, store gift guides, DoorDash.</p>
 </section>
@@ -86,7 +86,7 @@
 <section>
   <div class="eyebrow">How the agents work</div>
   <div class="diagram">{{DIAGRAM}}</div>
-  <p class="small muted" style="margin-top:6px">7 agents on gpt-6-luna. The orchestrator and the house rules are plain code, so no model can change the steps, budget or delivery rules. Shoppers run in parallel; each only returns ids its tool showed it.</p>
+  <p class="small muted" style="margin-top:6px">8 agents on gpt-6-luna, including a Chat agent that remembers where you left off. The orchestrator and the house rules are plain code, so no model can change the steps, budget or delivery rules. Shoppers run in parallel; each only returns ids its tool showed it.</p>
 </section>
 
 <!-- 5 DEMO -->
@@ -167,9 +167,9 @@
   <h2>From demo catalog <em>to the real world.</em></h2>
   <div class="grid2">
     <div class="card yellow"><b>Live products</b>Shopping APIs with real prices and stock instead of the ~100-item demo catalog.</div>
-    <div class="card green"><b>Cohort mode</b>Import the cohort's Excel birthday list, assign a weekly "cake captain," and hand off to the next rep.</div>
+    <div class="card green"><b>Cohort mode</b>Import the cohort's Excel list and give each learning team a shared list with automatic reminders.</div>
     <div class="card pink"><b>Confirm same-day</b>Delivery and florist APIs to check that a nearby shop can deliver today.</div>
-    <div class="card purple"><b>Hosted + a real study</b>Sign-in, per-user spend caps, texted reminders, and a 10–20 person time and satisfaction study.</div>
+    <div class="card purple"><b>Hosted + a real study</b>Sign-in, shared team lists, automatic texts, and a 10–20 person time and satisfaction study.</div>
   </div>
   <p class="small muted" style="margin-top:16px">Thank you · Giftwise · Archita Kadam · github.com/ask267/giftwise</p>
 </section>

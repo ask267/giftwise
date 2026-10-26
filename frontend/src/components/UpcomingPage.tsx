@@ -1,9 +1,10 @@
 import { useRef, useState } from 'react'
-import { importPeople, loadDemo, parseCalendar, setDate, type Occasion, type ParsedPerson, type Person } from '../api'
+import { importPeople, loadDemo, mailtoLink, parseCalendar, setDate, smsLink, type Occasion, type ParsedPerson, type Person } from '../api'
 import { formatDate } from '../format'
 import { downloadReminders } from '../reminders'
 import Avatar from './Avatar'
 import HolidayPlanner from './HolidayPlanner'
+import RemindersCard from './RemindersCard'
 
 export interface FinderPreset {
   personId: string
@@ -87,6 +88,11 @@ function advice(r: Row): { level: 'urgent' | 'soon' | 'calm'; text: string } {
   if (r.days <= 2) return { level: 'urgent', text: r.days === 0 ? 'Today! Same-day gifts only' : 'Same-day gifts only' }
   if (r.days < 10) return { level: 'soon', text: `Order by ${nice(addDays(r.date, -3))} for 2–3 day shipping` }
   return { level: 'calm', text: `Custom or handmade gifts possible if you order by ${nice(addDays(r.date, -10))}` }
+}
+
+function reminderText(r: Row, tip: string) {
+  const what = r.occasion === 'christmas' ? 'Christmas' : `${r.title}'s ${r.occasion}`
+  return `🎁 Reminder: ${what} is ${nice(r.date)} (${when(r)}). ${tip}. Planning it in Giftwise: http://localhost:5190`
 }
 
 function when(r: Row) {
@@ -173,6 +179,7 @@ export default function UpcomingPage({ people, setPeople, onFind, onImportNotes 
       )}
 
       <div className="dash-grid">
+        {people.length > 0 && <RemindersCard />}
         {people.length > 0 && <HolidayPlanner people={people} onFind={onFind} />}
         <CalendarImport people={people} setPeople={setPeople} />
         {missing.length > 0 && <MissingDates people={missing} all={people} setPeople={setPeople} />}
@@ -200,6 +207,10 @@ function UpcomingRow({ row: r, people, onFind }: { row: Row; people: Person[]; o
           {r.count ? ` · ${r.count} people on your list` : r.ideas ? ` · ${r.ideas} idea${r.ideas === 1 ? '' : 's'} saved` : ''}
         </p>
       </div>
+      <span className="row-remind">
+        <a href={smsLink(null, reminderText(r, a.text))} title="Text this reminder (e.g. to your learning team)">💬</a>
+        <a href={mailtoLink(null, `Reminder: ${r.title} · ${r.occasion}`, reminderText(r, a.text))} title="Email this reminder">✉️</a>
+      </span>
       <button
         className="btn btn-primary btn-sm"
         onClick={() => onFind({ personId: target.id, occasion: r.occasion, date: iso(r.date) })}
