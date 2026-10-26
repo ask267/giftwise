@@ -1,0 +1,422 @@
+{
+ "date": "2026-10-26",
+ "summary": {
+  "baseline": {
+   "suggestions": 30,
+   "with_any_problem": 2,
+   "with_link": 0,
+   "dislike": 0,
+   "repeat": 0,
+   "budget": 0,
+   "too_late": 2,
+   "no_store": 0
+  },
+  "giftwise": {
+   "suggestions": 14,
+   "with_any_problem": 0,
+   "with_link": 14,
+   "dislike": 0,
+   "repeat": 0,
+   "budget": 0,
+   "too_late": 0,
+   "no_store": 0
+  },
+  "baseline_cost_usd": 0.00152,
+  "giftwise_cost_usd": 0.00998
+ },
+ "cases": [
+  {
+   "person": "Mom",
+   "days_left": 2,
+   "budget": 60,
+   "dislikes": [
+    "candles"
+   ],
+   "baseline": [
+    {
+     "title": "The cookbook from her wishlist, paired with a handwritten note and a family recipe tucked inside",
+     "price": 35.0,
+     "store": "Local bookstore or bookstore gift section; call ahead to check stock",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "A handmade ceramic mug or small bowl from a local potter\u2014choose one in a glaze she\u2019d love",
+     "price": 45.0,
+     "store": "Local pottery studio, craft market, or independent gift shop",
+     "link": false,
+     "problems": [
+      "too_late"
+     ]
+    },
+    {
+     "title": "A pottery-class gift certificate so you can enjoy a creative outing together",
+     "price": 60.0,
+     "store": "Nearby pottery studio; ask about printable or pickup vouchers",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "A beautiful edition of a favorite book, with a personal inscription on the inside cover",
+     "price": 30.0,
+     "store": "Independent bookstore or used-book shop",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "A small ceramic spoon rest or trinket dish, chosen for a little everyday reminder of you",
+     "price": 25.0,
+     "store": "Local ceramics shop or craft market",
+     "link": false,
+     "problems": []
+    }
+   ],
+   "giftwise": [
+    {
+     "title": "Cookbook from a favorite chef",
+     "price": 35.0,
+     "store": "Barnes & Noble",
+     "link": true,
+     "problems": []
+    },
+    {
+     "title": "Signed or special-edition novel",
+     "price": 35.0,
+     "store": "Barnes & Noble",
+     "link": true,
+     "problems": []
+    }
+   ],
+   "giftwise_cost": 0.0015054
+  },
+  {
+   "person": "Jake",
+   "days_left": 4,
+   "budget": 50,
+   "dislikes": [
+    "hoodies",
+    "sweatshirts"
+   ],
+   "baseline": [
+    {
+     "title": "Wilson NBA DRV basketball \u2014 a real ball for pickup games, not just roommate d\u00e9cor",
+     "price": 25.0,
+     "store": "Dick\u2019s Sporting Goods or Walmart",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "SKLZ Pro Mini Basketball Hoop \u2014 for dramatically celebrating shots into the laundry basket",
+     "price": 30.0,
+     "store": "Amazon or Dick\u2019s Sporting Goods",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "Soundcore Select 4 Go Bluetooth speaker \u2014 portable music for hangs, workouts, or pre-game hype",
+     "price": 25.0,
+     "store": "Amazon or Anker",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "Basketball-themed crew socks \u2014 useful, easy to find locally, and a safer bet than another hoodie",
+     "price": 15.0,
+     "store": "Dick\u2019s Sporting Goods or Target",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "Novelty referee whistle with lanyard \u2014 for issuing extremely unofficial roommate technical fouls",
+     "price": 8.0,
+     "store": "Amazon or a local sporting-goods store",
+     "link": false,
+     "problems": []
+    }
+   ],
+   "giftwise": [
+    {
+     "title": "Portable Bluetooth speaker",
+     "price": 50.0,
+     "store": "Best Buy",
+     "link": true,
+     "problems": []
+    },
+    {
+     "title": "Insulated water bottle",
+     "price": 40.0,
+     "store": "Hydro Flask",
+     "link": true,
+     "problems": []
+    },
+    {
+     "title": "Vinyl record of a favorite album",
+     "price": 32.0,
+     "store": "Urban Outfitters",
+     "link": true,
+     "problems": []
+    }
+   ],
+   "giftwise_cost": 0.0020526999999999998
+  },
+  {
+   "person": "Priya",
+   "days_left": 1,
+   "budget": 40,
+   "dislikes": [
+    "flowers"
+   ],
+   "baseline": [
+    {
+     "title": "Balega Hidden Comfort running socks",
+     "price": 16.0,
+     "store": "REI or Balega.com",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "Clip-on rechargeable running safety light",
+     "price": 20.0,
+     "store": "Amazon or a local running store",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "TriggerPoint MB1 massage ball for post-run recovery",
+     "price": 18.0,
+     "store": "REI or Target",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "Ceremonial-grade matcha starter tin",
+     "price": 25.0,
+     "store": "Ippodo Tea or a local tea shop",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "Matcha whisk (chasen) with holder",
+     "price": 22.0,
+     "store": "Target, Amazon, or a local Japanese grocery",
+     "link": false,
+     "problems": []
+    }
+   ],
+   "giftwise": [
+    {
+     "title": "Running belt for phone & keys",
+     "price": 30.0,
+     "store": "REI",
+     "link": true,
+     "problems": []
+    }
+   ],
+   "giftwise_cost": 0.0007574
+  },
+  {
+   "person": "Dad",
+   "days_left": 6,
+   "budget": 80,
+   "dislikes": [
+    "socks",
+    "ties"
+   ],
+   "baseline": [
+    {
+     "title": "Electric burr coffee grinder (entry-level model, such as OXO Brew Conical Burr Grinder)",
+     "price": 79.0,
+     "store": "OXO, Amazon, or major kitchen retailers",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "Stainless-steel insulated travel mug, such as Fellow Carter Move",
+     "price": 35.0,
+     "store": "Fellow or Amazon",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "Personalized leather golf scorecard holder",
+     "price": 45.0,
+     "store": "Etsy or golf specialty shops",
+     "link": false,
+     "problems": [
+      "too_late"
+     ]
+    },
+    {
+     "title": "Premium coffee sampler with a ceramic pour-over dripper",
+     "price": 55.0,
+     "store": "Trade Coffee, local specialty roaster, or a kitchen retailer",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "Compact golf rangefinder case or premium microfiber golf towel set",
+     "price": 30.0,
+     "store": "PGA TOUR Superstore or Dick's Sporting Goods",
+     "link": false,
+     "problems": []
+    }
+   ],
+   "giftwise": [
+    {
+     "title": "Golf lesson or driving-range session",
+     "price": 60.0,
+     "store": "Topgolf",
+     "link": true,
+     "problems": []
+    },
+    {
+     "title": "Specialty coffee subscription (3 months)",
+     "price": 60.0,
+     "store": "Trade Coffee",
+     "link": true,
+     "problems": []
+    }
+   ],
+   "giftwise_cost": 0.0016525
+  },
+  {
+   "person": "Grandma",
+   "days_left": 3,
+   "budget": 70,
+   "dislikes": [
+    "perfume",
+    "chocolate"
+   ],
+   "baseline": [
+    {
+     "title": "Loose-leaf tea sampler with a stainless-steel infuser",
+     "price": 30.0,
+     "store": "A local tea shop or World Market; often available for same-day pickup",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "Pretty ceramic teapot and matching mug",
+     "price": 45.0,
+     "store": "Target or World Market; check local store pickup",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "Garden kneeler and seat",
+     "price": 40.0,
+     "store": "Home Depot or Lowe\u2019s; typically available in-store",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "Garden journal with a handwritten note tucked inside",
+     "price": 22.0,
+     "store": "A local bookstore or garden center",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "A flowering perennial in a decorative pot, with a personal birthday card",
+     "price": 35.0,
+     "store": "A nearby garden center or florist",
+     "link": false,
+     "problems": []
+    }
+   ],
+   "giftwise": [
+    {
+     "title": "Indoor herb garden kit",
+     "price": 40.0,
+     "store": "Uncommon Goods",
+     "link": true,
+     "problems": []
+    },
+    {
+     "title": "Loose-leaf tea tasting flight",
+     "price": 32.0,
+     "store": "Harney & Sons",
+     "link": true,
+     "problems": []
+    },
+    {
+     "title": "Potted orchid",
+     "price": 55.0,
+     "store": "Local florist",
+     "link": true,
+     "problems": []
+    },
+    {
+     "title": "Leather journal",
+     "price": 30.0,
+     "store": "Leuchtturm1917",
+     "link": true,
+     "problems": []
+    }
+   ],
+   "giftwise_cost": 0.0017399000000000002
+  },
+  {
+   "person": "Lena",
+   "days_left": 20,
+   "budget": 60,
+   "dislikes": [
+    "mugs"
+   ],
+   "baseline": [
+    {
+     "title": "Cake-decorating workshop gift certificate at a local bakery or cake studio",
+     "price": 55.0,
+     "store": "A nearby bakery or cake-decorating studio",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "Beginner linocut printmaking kit for a creative afternoon",
+     "price": 35.0,
+     "store": "Blick Art Materials",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "Personalized, handmade recipe journal or recipe-card set",
+     "price": 30.0,
+     "store": "Etsy",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "DIY cookie-decorating kit with icing and cutters for a bake-and-create night",
+     "price": 35.0,
+     "store": "Etsy",
+     "link": false,
+     "problems": []
+    },
+    {
+     "title": "Sourdough starter and baking kit for an at-home baking experience",
+     "price": 40.0,
+     "store": "King Arthur Baking",
+     "link": false,
+     "problems": []
+    }
+   ],
+   "giftwise": [
+    {
+     "title": "Watercolor starter set",
+     "price": 40.0,
+     "store": "Blick",
+     "link": true,
+     "problems": []
+    },
+    {
+     "title": "Milk Bar cake truffles",
+     "price": 38.0,
+     "store": "Goldbelly",
+     "link": true,
+     "problems": []
+    }
+   ],
+   "giftwise_cost": 0.00227016
+  }
+ ]
+}
